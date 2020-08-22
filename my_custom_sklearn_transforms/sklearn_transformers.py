@@ -13,12 +13,6 @@ class DropColumns(BaseEstimator, TransformerMixin):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
-        target = "PERFIL"
-        cls = data[target].unique()
-        for x in cls:
-            for col in data.columns:
-                if col != target:
-                    data.loc[( (data[target]==x) & (data[col].isnull()) ),col] = data[col].loc[(data[target]==x)].mean()
         return data.drop(labels=self.columns, axis='columns')
     
     
@@ -33,12 +27,9 @@ class PersFill(BaseEstimator, TransformerMixin):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         
         data = X.copy()
-        data.head()
         target = "PERFIL"
-        cls = self.dataf[target].unique()
         for x in cls:
             for col in data.columns:
                 if col != target:
-                    self.dataf.loc[( (self.dataf[target]==x) & (self.dataf[col].isnull()) ),col] = self.dataf[col].loc[(self.dataf[target]==x)].mean()
-        data = self.dataf.drop(columns =['PERFIL'])
+                    self.data.loc[( (self.dataf[target]==x) & (self.dataf[col].isnull()) ),col] = self.dataf[col].loc[(self.dataf[target]==x)].mean()
         return data 
