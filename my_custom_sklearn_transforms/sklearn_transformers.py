@@ -17,3 +17,22 @@ class DropColumns(BaseEstimator, TransformerMixin):
     
     
 
+class PersFill(BaseEstimator, TransformerMixin):
+    def __init__(self, dataf):
+        self.dataf = dataf
+        
+    def fit(self, X, y=None):
+        return self
+         
+    def transform(self, X):
+        # Primeiro realizamos a cópia do dataframe 'X' de entrada
+        
+        data = X.copy()
+        target = "PERFIL"
+        cls = self.dataf[target]
+        for x in cls:
+            for col in data.columns:
+                if col != target:
+                    self.dataf.loc[( (self.dataf[target]==x) & (self.dataf[col].isnull()) ),col] = self.dataf[col].loc[(self.dataf[target]==x)].mean()
+                    data[col] = self.dataf[col]
+        return data
