@@ -13,7 +13,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
-        data
+        data.head()
         return data.drop(labels=self.columns, axis='columns')
     
     
