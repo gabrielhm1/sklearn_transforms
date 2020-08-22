@@ -28,6 +28,7 @@ class PersFill(BaseEstimator, TransformerMixin):
         
         data = X.copy()
         target = "PERFIL"
+        cls = self.dataf[target]
         for x in cls:
             for col in data.columns:
                 if col != target:
