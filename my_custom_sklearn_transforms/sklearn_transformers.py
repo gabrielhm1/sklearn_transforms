@@ -14,7 +14,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         target = "PERFIL"
-        cls = self.dataf[target].unique()
+        cls = data[target].unique()
         for x in cls:
             for col in data.columns:
                 if col != target:
