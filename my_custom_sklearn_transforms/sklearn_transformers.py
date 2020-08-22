@@ -17,8 +17,8 @@ class DropColumns(BaseEstimator, TransformerMixin):
     
     
 class PersFill(BaseEstimator, TransformerMixin):
-    def __init__(self, columns):
-        self.columns = columns
+    def __init__(self, dataf):
+        self.dataf = dataf
         
     def fit(self, X, y=None):
         return self
@@ -28,7 +28,7 @@ class PersFill(BaseEstimator, TransformerMixin):
         
         data = X.copy()
         target = "PERFIL"
-        cls = X[target].unique()
+        cls = self.dataf[target].unique()
         for x in cls:
             for col in data.columns:
                 if col != target:
