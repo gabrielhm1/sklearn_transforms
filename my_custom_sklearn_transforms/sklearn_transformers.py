@@ -28,10 +28,11 @@ class PersFill(BaseEstimator, TransformerMixin):
         
         data = X.copy()
         data.head()
-        '''target = "PERFIL"
+        target = "PERFIL"
         cls = self.dataf[target].unique()
         for x in cls:
             for col in data.columns:
                 if col != target:
-                    data.loc[( (data[target]==x) & (data[col].isnull()) ),col] = data[col].loc[(data[target]==x)].mean()'''
+                    self.dataf.loc[( (self.dataf[target]==x) & (self.dataf[col].isnull()) ),col] = self.dataf[col].loc[(self.dataf[target]==x)].mean()
+        data = self.dataf.drop(columns =['PERFIL'])
         return data 
