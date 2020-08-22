@@ -32,5 +32,5 @@ class PersFill(BaseEstimator, TransformerMixin):
         for x in cls:
             for col in data.columns:
                 if col != target:
-                    self.data.loc[( (self.dataf[target]==x) & (self.dataf[col].isnull()) ),col] = self.dataf[col].loc[(self.dataf[target]==x)].mean()
+                    data.loc[( (self.dataf[target]==x) & (self.dataf[col].isnull()) ),col] = self.dataf[col].loc[(self.dataf[target]==x)].mean()
         return data 
