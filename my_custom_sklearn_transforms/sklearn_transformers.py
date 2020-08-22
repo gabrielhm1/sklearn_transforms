@@ -28,7 +28,7 @@ class PersFill(BaseEstimator, TransformerMixin):
         
         data = X.copy()
         target = "PERFIL"
-        cls = X[target].values()
+        cls = X[target].unique()
         for x in cls:
             for col in data.columns:
                 if col != target:
