@@ -27,8 +27,8 @@ class PersFill(BaseEstimator, TransformerMixin):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         
         data = X.copy()
-        target = "NOTA_DE"
-        cls = data[target].values()
+        target = "PERFIL"
+        cls = X[target].values()
         for x in cls:
             for col in data.columns:
                 if col != target:
